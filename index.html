@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Perfil para começar em programação</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --bg: #F4F0E6;
+  --panel: #FFFFFF;
+  --panel-soft: #FBF8F1;
+  --ink: #2B2620;
+  --ink-dim: #746C5E;
+  --line: #E3DCC9;
+  --plum: #5B4B8A;
+  --plum-soft: #EFEAF9;
+  --sage: #4E7C5B;
+  --sage-soft: #E5EFE3;
+  --amber: #C97A2B;
+  --amber-soft: #F7E7D2;
+  --rose: #B84B4B;
+  --rose-soft: #F6E3E0;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  padding: 40px 16px 70px;
+  display:flex;
+  justify-content:center;
+}
+.wrap{ width:100%; max-width:620px; }
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:28px;
+}
+.brand{
+  font-family:'Space Grotesk', sans-serif;
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color: var(--plum);
+}
+.brand span{ color: var(--ink-dim); font-weight:500; text-transform:none; letter-spacing:0; margin-left:8px;}
+
+.panel{
+  background: var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:34px 30px;
+}
+
+/* ---- intro ---- */
+.badge-row{ display:flex; gap:8px; margin-bottom:22px; }
+.dot{ width:8px; height:8px; border-radius:50%; }
+.dot.d1{ background: var(--plum); }
+.dot.d2{ background: var(--sage); }
+.dot.d3{ background: var(--amber); }
+.dot.d4{ background: var(--rose); }
+.dot.d5{ background: #3E7DA6; }
+
+#intro h1{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:29px;
+  line-height:1.28;
+  margin:0 0 14px;
+  color: var(--ink);
+}
+#intro p{ font-size:15px; line-height:1.7; color: var(--ink-dim); margin:0 0 22px; max-width:50ch;}
+
+.skill-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-bottom:28px; }
+.skill-chip{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px 13px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:12.5px;
+  font-weight:500;
+  background: var(--panel-soft);
+}
+.skill-chip svg{ flex-shrink:0; }
+
+.btn{
+  font-family:'Inter', sans-serif;
+  background: var(--plum);
+  color:#fff;
+  border:none;
+  padding:13px 24px;
+  font-size:14.5px;
+  font-weight:600;
+  border-radius:10px;
+  cursor:pointer;
+}
+.btn:hover{ background:#4a3d73; }
+.btn.ghost{
+  background:transparent;
+  border:1.5px solid var(--line);
+  color: var(--ink);
+}
+.btn.ghost:hover{ border-color:var(--plum); color:var(--plum); }
+
+/* ---- quiz ---- */
+.progress-row{ display:flex; align-items:center; gap:12px; margin-bottom:26px; }
+.progress-track{ flex:1; height:6px; background: var(--panel-soft); border-radius:3px; overflow:hidden; border:1px solid var(--line); }
+.progress-fill{ height:100%; background: var(--plum); width:0%; transition: width .4s ease; border-radius:3px; }
+.progress-label{ font-family:'Space Grotesk', sans-serif; font-size:12.5px; font-weight:600; color: var(--ink-dim); white-space:nowrap;}
+
+.skill-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.03em;
+  text-transform:uppercase;
+  padding:5px 12px 5px 9px;
+  border-radius:99px;
+  margin-bottom:16px;
+}
+#quiz h2{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:20px;
+  line-height:1.48;
+  margin:0 0 22px;
+  color: var(--ink);
+}
+.opt{
+  display:block;
+  width:100%;
+  text-align:left;
+  background: var(--panel-soft);
+  border:1.5px solid var(--line);
+  color: var(--ink);
+  padding:14px 17px;
+  border-radius:12px;
+  font-size:14.5px;
+  font-family:'Inter', sans-serif;
+  margin-bottom:10px;
+  cursor:pointer;
+  line-height:1.5;
+  transition: border-color .15s ease, background .15s ease, transform .1s ease;
+}
+.opt:hover{ border-color: var(--plum); background:var(--plum-soft); }
+.opt:active{ transform: scale(0.99); }
+
+/* ---- results ---- */
+#results h2{
+  font-family:'Fraunces', serif;
+  font-size:25px;
+  font-weight:600;
+  margin:0 0 4px;
+}
+#results .sub{ color: var(--ink-dim); font-size:14px; margin:0 0 26px; }
+
+.overall{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  margin-bottom:30px;
+}
+.ring{
+  width:96px; height:96px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+  position:relative;
+}
+.ring .hole{
+  width:74px; height:74px;
+  border-radius:50%;
+  background: var(--panel);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Space Grotesk', sans-serif;
+  font-size:19px;
+  font-weight:700;
+  color: var(--ink);
+}
+.overall .txt{ font-size:13.5px; color: var(--ink-dim); line-height:1.6;}
+.overall .txt b{ color: var(--ink); }
+
+.skillrow{ margin-bottom:18px; }
+.skillrow .head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:7px; }
+.skillrow .name{ display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:500; }
+.skillrow .name .desc{ font-family:'Inter'; font-weight:400; font-size:11.5px; color: var(--ink-dim); }
+.skillrow .pct{ font-family:'Space Grotesk', sans-serif; font-size:13px; font-weight:600; }
+.bar-track{ height:10px; background: var(--panel-soft); border-radius:6px; overflow:hidden; border:1px solid var(--line); }
+.bar-fill{ height:100%; border-radius:6px; transition: width .5s ease; }
+
+.reco{ margin-top:30px; border-top:1px solid var(--line); padding-top:24px; }
+.reco h3{
+  font-family:'Space Grotesk', sans-serif;
+  font-size:12px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  color: var(--ink-dim);
+  margin:0 0 16px;
+}
+.reco-card{
+  border-radius:14px;
+  padding:16px 18px;
+  margin-bottom:12px;
+  font-size:13.5px;
+  line-height:1.6;
+}
+.reco-card .rc-head{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:14px; margin-bottom:5px; display:flex; align-items:center; gap:8px;}
+
+.actions{ display:flex; gap:10px; margin-top:28px; }
+
+.hidden{ display:none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand">perfil<span>· primeiros passos em programação</span></div>
+  </div>
+
+  <div class="panel" id="intro">
+    <div class="badge-row">
+      <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div><div class="dot d4"></div><div class="dot d5"></div>
+    </div>
+    <h1>Você tem as virtudes para seguir em frente na programação?</h1>
+    <p>10 situações do dia a dia de quem está começando — sem nenhum termo técnico. Nenhuma resposta exige saber programar: o que importa é como você reage a erro, a trabalho em grupo e a prazo. No final, você vê seu perfil de soft skills e o que vale reforçar para continuar.</p>
+
+    <div class="skill-grid">
+      <div class="skill-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4B8A" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Comunicação</div>
+      <div class="skill-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4E7C5B" stroke-width="2"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><path d="M2 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 13a4 4 0 0 1 4 4v2"/></svg>Trabalho em equipe</div>
+      <div class="skill-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C97A2B" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Organização</div>
+      <div class="skill-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B84B4B" stroke-width="2"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>Resiliência a erros</div>
+      <div class="skill-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3E7DA6" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Curiosidade</div>
+    </div>
+
+    <button class="btn" onclick="startQuiz()">Começar diagnóstico →</button>
+  </div>
+
+  <div class="panel hidden" id="quiz">
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">1 / 10</div>
+    </div>
+    <div class="skill-eyebrow" id="skillEyebrow"></div>
+    <h2 id="questionText"></h2>
+    <div id="options"></div>
+  </div>
+
+  <div class="panel hidden" id="results">
+    <h2>Seu perfil de soft skills</h2>
+    <p class="sub">A partir das suas 10 respostas</p>
+
+    <div class="overall">
+      <div class="ring" id="ring"><div class="hole" id="overallNum">0%</div></div>
+      <div class="txt" id="overallTxt"></div>
+    </div>
+
+    <div id="skillBars"></div>
+
+    <div class="reco" id="recoSection"></div>
+
+    <div class="actions">
+      <button class="btn ghost" onclick="restart()">Refazer diagnóstico</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const skills = {
+  comunicacao: { label:"Comunicação", short:"pedir ajuda e explicar o que entendeu", color:"#5B4B8A", soft:"var(--plum-soft)",
+    icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>' },
+  equipe: { label:"Trabalho em equipe", short:"colaborar quando a ideia do outro é diferente", color:"#4E7C5B", soft:"var(--sage-soft)",
+    icon:'<circle cx="9" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><path d="M2 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 13a4 4 0 0 1 4 4v2"/>' },
+  organizacao: { label:"Organização e tempo", short:"lidar com prazos e atividades concorrentes", color:"#C97A2B", soft:"var(--amber-soft)",
+    icon:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>' },
+  resiliencia: { label:"Resiliência a erros", short:"continuar depois de errar ou ser corrigido", color:"#B84B4B", soft:"var(--rose-soft)",
+    icon:'<path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/>' },
+  curiosidade: { label:"Curiosidade", short:"ir além do que foi pedido, por interesse próprio", color:"#3E7DA6", soft:"#E4EEF4",
+    icon:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>' }
+};
+
+const questions = [
+  { skill:"comunicacao",
+    text:"Você está aprendendo uma lógica nova e não entendeu direito a explicação do professor. Você:",
+    options:[
+      {t:"Levanta a mão e pergunta na hora, mesmo achando que pode ser \"pergunta boba\"", v:3},
+      {t:"Fica quieto e tenta entender sozinho depois, em casa", v:2},
+      {t:"Copia o que os colegas fizeram sem entender", v:0},
+      {t:"Espera a prova para descobrir se entendeu ou não", v:1}
+    ]},
+  { skill:"comunicacao",
+    text:"Um colega de turma te pede ajuda porque não entendeu um exercício que você já resolveu. Você:",
+    options:[
+      {t:"Explica seu raciocínio passo a passo, do seu jeito", v:3},
+      {t:"Manda a resposta pronta para ele copiar", v:0},
+      {t:"Diz que não sabe explicar e sugere procurar o professor", v:1},
+      {t:"Explica rápido, sem checar se ele realmente entendeu", v:2}
+    ]},
+  { skill:"equipe",
+    text:"Numa atividade em dupla, seu parceiro tem uma ideia diferente da sua para resolver o exercício. Você:",
+    options:[
+      {t:"Insiste na sua ideia porque tem certeza que é a certa", v:0},
+      {t:"Testa as duas ideias com calma e fica com a que funcionar melhor", v:3},
+      {t:"Aceita a ideia dele só para não discutir", v:1},
+      {t:"Faz do seu jeito sem avisar", v:1}
+    ]},
+  { skill:"equipe",
+    text:"O grupo vai apresentar um exercício resolvido em conjunto, mas só uma pessoa entendeu tudo direito. Você:",
+    options:[
+      {t:"Deixa essa pessoa apresentar sozinha", v:1},
+      {t:"Propõe que o grupo revise junto antes, para todos entenderem", v:3},
+      {t:"Finge que entendeu, para não atrasar o grupo", v:0},
+      {t:"Pede para copiar as respostas na hora da apresentação", v:0}
+    ]},
+  { skill:"organizacao",
+    text:"Você tem uma lista de exercícios para entregar e outras matérias também pedindo trabalho na mesma semana. Você:",
+    options:[
+      {t:"Organiza um horário simples, dividindo o tempo entre as atividades", v:3},
+      {t:"Faz tudo de última hora, na véspera", v:0},
+      {t:"Foca só na matéria que gosta mais e deixa o resto de lado", v:1},
+      {t:"Pede prazo extra mesmo sem ter tentado se organizar antes", v:1}
+    ]},
+  { skill:"organizacao",
+    text:"Você começou um exercício e percebeu que está demorando muito mais do que imaginava. Você:",
+    options:[
+      {t:"Para, reavalia o tempo que tem e ajusta o plano", v:3},
+      {t:"Continua do mesmo jeito até não aguentar mais", v:1},
+      {t:"Abandona o exercício no meio", v:0},
+      {t:"Fica nele até altas horas sem repensar a estratégia", v:2}
+    ]},
+  { skill:"resiliencia",
+    text:"Você tenta resolver um exercício várias vezes e erra todas. Você:",
+    options:[
+      {t:"Acha que \"não nasceu pra isso\" e pensa em desistir", v:0},
+      {t:"Erra, respira, revê onde travou e tenta de novo com calma", v:3},
+      {t:"Fica bem frustrado, mas continua tentando sem entender o erro", v:1},
+      {t:"Copia a resposta certa e segue sem entender o motivo do erro", v:1}
+    ]},
+  { skill:"resiliencia",
+    text:"O professor corrige um erro seu na frente da turma. Você:",
+    options:[
+      {t:"Fica com vergonha e evita perguntar de novo depois", v:0},
+      {t:"Anota o erro, entende onde travou e segue tentando", v:3},
+      {t:"Discorda na hora, mesmo sem ter certeza", v:1},
+      {t:"Ri e esquece, sem entender de fato o que errou", v:1}
+    ]},
+  { skill:"curiosidade",
+    text:"Você termina um exercício rápido e sobra tempo de aula. Você:",
+    options:[
+      {t:"Fica esperando o sinal tocar", v:0},
+      {t:"Tenta resolver o exercício de um jeito diferente, só por curiosidade", v:3},
+      {t:"Ajuda um colega que ainda está travado", v:2},
+      {t:"Mexe no celular até a próxima atividade", v:0}
+    ]},
+  { skill:"curiosidade",
+    text:"Você percebe que algo de outra matéria (matemática, física) parece ter a ver com o que está aprendendo agora. Você:",
+    options:[
+      {t:"Ignora, porque \"isso é de outra matéria\"", v:0},
+      {t:"Fica curioso e tenta entender a conexão entre os dois assuntos", v:3},
+      {t:"Comenta com um colega, mas não investiga mais", v:2},
+      {t:"Acha estranho e não pensa mais nisso", v:1}
+    ]}
+];
+
+let current = 0;
+const scores = { comunicacao:0, equipe:0, organizacao:0, resiliencia:0, curiosidade:0 };
+
+function startQuiz(){
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('quiz').classList.remove('hidden');
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = questions[current];
+  const sk = skills[q.skill];
+  document.getElementById('progressLabel').textContent = `${current+1} / 10`;
+  document.getElementById('progressFill').style.width = ((current)/10*100)+'%';
+
+  const eyebrow = document.getElementById('skillEyebrow');
+  eyebrow.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="${sk.color}" stroke-width="2">${sk.icon}</svg> ${sk.label}`;
+  eyebrow.style.background = sk.soft;
+  eyebrow.style.color = sk.color;
+
+  document.getElementById('questionText').textContent = q.text;
+  const opts = document.getElementById('options');
+  opts.innerHTML = '';
+  q.options.forEach(o=>{
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.textContent = o.t;
+    b.onclick = ()=> answer(q.skill, o.v);
+    opts.appendChild(b);
+  });
+}
+
+function answer(skill, v){
+  scores[skill] += v;
+  current++;
+  if(current < questions.length){
+    renderQuestion();
+  } else {
+    document.getElementById('progressFill').style.width = '100%';
+    showResults();
+  }
+}
+
+function statusWord(pct){
+  if(pct >= 70) return {word:'consolidada', color:'#4E7C5B'};
+  if(pct >= 40) return {word:'em desenvolvimento', color:'#C97A2B'};
+  return {word:'precisa de atenção', color:'#B84B4B'};
+}
+
+const recos = {
+  comunicacao: "Treine perguntar na hora que a dúvida surgir, em vez de guardar pra depois. E quando ajudar um colega, explique seu raciocínio em vez de só entregar a resposta — isso fixa o que você aprendeu.",
+  equipe: "Antes de insistir numa ideia sozinho, proponha testar as opções do grupo com calma. Se só uma pessoa entendeu a atividade, sugira revisar junto antes de apresentar.",
+  organizacao: "Monte um cronograma simples (mesmo numa folha de papel) sempre que houver mais de uma entrega na mesma semana. Se perceber que uma atividade está atrasando, pare e reorganize o tempo em vez de insistir sem plano.",
+  resiliencia: "Quando errar, tente anotar exatamente onde travou antes de tentar de novo — isso troca a frustração por um plano. Ser corrigido em público não é sinal de fracasso, é parte normal de aprender algo novo.",
+  curiosidade: "Quando sobrar tempo, use para explorar o exercício de outro jeito em vez de esperar a próxima atividade. Preste atenção às conexões entre matérias — isso é ótimo sinal de raciocínio lógico."
+};
+
+const strongMsgs = {
+  comunicacao: "Você já pede ajuda e explica o que sabe sem travar — essa é uma das maiores diferenças entre quem avança rápido e quem trava sozinho ao aprender a programar.",
+  equipe: "Você lida bem com ideias diferentes das suas e prioriza o entendimento do grupo, não só o seu — isso facilita muito qualquer trabalho em equipe.",
+  organizacao: "Você organiza prioridades quando os prazos apertam, em vez de deixar tudo para a última hora.",
+  resiliencia: "Errar não te paralisa — você revê o que aconteceu e tenta de novo. Essa é talvez a virtude mais importante para continuar em programação.",
+  curiosidade: "Você vai além do que foi pedido só por interesse próprio — é exatamente esse impulso que sustenta o aprendizado depois que as aulas acabam."
+};
+
+function showResults(){
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+
+  const pcts = {};
+  Object.keys(scores).forEach(k=> pcts[k] = Math.round(scores[k]/6*100));
+  const overall = Math.round(Object.values(pcts).reduce((a,b)=>a+b,0)/5);
+
+  document.getElementById('overallNum').textContent = overall + '%';
+  const ov = statusWord(overall);
+  const ring = document.getElementById('ring');
+  ring.style.background = `conic-gradient(${ov.color} ${overall*3.6}deg, #E3DCC9 0deg)`;
+  document.getElementById('overallTxt').innerHTML = `Nível geral <b style="color:${ov.color}">${ov.word}</b> para quem está começando em programação. Veja abaixo onde reforçar antes de seguir para os primeiros projetos.`;
+
+  const barsEl = document.getElementById('skillBars');
+  barsEl.innerHTML = '';
+  const sorted = Object.keys(pcts).sort((a,b)=> pcts[b]-pcts[a]);
+  sorted.forEach(k=>{
+    const sk = skills[k];
+    const st = statusWord(pcts[k]);
+    const row = document.createElement('div');
+    row.className = 'skillrow';
+    row.innerHTML = `
+      <div class="head">
+        <span class="name"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${sk.color}" stroke-width="2">${sk.icon}</svg> ${sk.label} <span class="desc">— ${sk.short}</span></span>
+        <span class="pct" style="color:${st.color}">${pcts[k]}%</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pcts[k]}%; background:${sk.color}"></div></div>
+    `;
+    barsEl.appendChild(row);
+  });
+
+  const weakest = sorted[sorted.length-1];
+  const secondWeakest = sorted[sorted.length-2];
+  const strongest = sorted[0];
+
+  const reco = document.getElementById('recoSection');
+  reco.innerHTML = `
+    <h3>Onde focar agora</h3>
+    <div class="reco-card" style="background:${skills[weakest].soft}">
+      <div class="rc-head" style="color:${skills[weakest].color}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="${skills[weakest].color}" stroke-width="2">${skills[weakest].icon}</svg>${skills[weakest].label} · ${pcts[weakest]}%</div>
+      ${recos[weakest]}
+    </div>
+    <div class="reco-card" style="background:${skills[secondWeakest].soft}">
+      <div class="rc-head" style="color:${skills[secondWeakest].color}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="${skills[secondWeakest].color}" stroke-width="2">${skills[secondWeakest].icon}</svg>${skills[secondWeakest].label} · ${pcts[secondWeakest]}%</div>
+      ${recos[secondWeakest]}
+    </div>
+    <div class="reco-card" style="background:${skills[strongest].soft}; border:1.5px solid ${skills[strongest].color}33">
+      <div class="rc-head" style="color:${skills[strongest].color}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="${skills[strongest].color}" stroke-width="2">${skills[strongest].icon}</svg>Ponto forte: ${skills[strongest].label} · ${pcts[strongest]}%</div>
+      ${strongMsgs[strongest]}
+    </div>
+  `;
+}
+
+function restart(){
+  current = 0;
+  Object.keys(scores).forEach(k=> scores[k]=0);
+  document.getElementById('results').classList.add('hidden');
+  document.getElementById('intro').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
