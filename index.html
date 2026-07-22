@@ -2,33 +2,39 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Perfil para começar em programação</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&family=Caveat:wght@600;700&family=Inter:wght@400;500;600&display=swap');
 
 :root{
-  --bg: #F4F0E6;
-  --panel: #FFFFFF;
-  --panel-soft: #FBF8F1;
+  --paper: #F7F2E7;
+  --panel: #FFFEFA;
+  --panel-soft: #FBF7EC;
   --ink: #2B2620;
-  --ink-dim: #746C5E;
-  --line: #E3DCC9;
+  --ink-dim: #7A7264;
+  --rule: rgba(91,75,138,0.09);
+  --line: #E4DBC6;
   --plum: #5B4B8A;
   --plum-soft: #EFEAF9;
   --sage: #4E7C5B;
   --sage-soft: #E5EFE3;
   --amber: #C97A2B;
   --amber-soft: #F7E7D2;
-  --rose: #B84B4B;
+  --rose: #B5433F;
   --rose-soft: #F6E3E0;
+  --blue: #3E7DA6;
+  --blue-soft: #E4EEF4;
 }
 *{box-sizing:border-box;}
 body{
   margin:0;
-  background: var(--bg);
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 33px, var(--rule) 33px 34px),
+    var(--paper);
   color: var(--ink);
-  font-family: 'Inter', sans-serif;
-  padding: 40px 16px 70px;
+  font-family:'Inter', sans-serif;
+  padding: 44px 16px 80px;
   display:flex;
   justify-content:center;
 }
@@ -36,50 +42,90 @@ body{
 
 .topbar{
   display:flex;
-  align-items:center;
+  align-items:baseline;
   justify-content:space-between;
-  margin-bottom:28px;
+  margin-bottom:26px;
+  padding:0 6px;
 }
 .brand{
   font-family:'Space Grotesk', sans-serif;
   font-weight:700;
-  font-size:15px;
-  letter-spacing:0.06em;
+  font-size:14px;
+  letter-spacing:0.08em;
   text-transform:uppercase;
   color: var(--plum);
+  position:relative;
 }
-.brand span{ color: var(--ink-dim); font-weight:500; text-transform:none; letter-spacing:0; margin-left:8px;}
+.brand::after{
+  content:"";
+  position:absolute; left:0; right:-6px; bottom:-4px; height:6px;
+  background: var(--plum-soft);
+  z-index:-1;
+  transform: skew(-8deg);
+}
+.brand span{ color: var(--ink-dim); font-weight:500; text-transform:none; letter-spacing:0; margin-left:10px; font-family:'Inter';}
+.brand-tag{
+  font-family:'Caveat', cursive; font-weight:600; font-size:16px; color: var(--rose);
+  transform: rotate(-4deg); display:inline-block;
+}
 
 .panel{
   background: var(--panel);
   border:1px solid var(--line);
-  border-radius:18px;
-  padding:34px 30px;
+  border-radius:16px;
+  padding:36px 32px 34px 66px;
+  position:relative;
+  box-shadow: 0 1px 0 rgba(43,38,32,0.02), 0 18px 40px -28px rgba(43,38,32,0.35);
+  overflow:hidden;
+}
+/* notebook margin rule */
+.panel::before{
+  content:"";
+  position:absolute; top:0; bottom:0; left:40px;
+  width:1.5px;
+  background: var(--rose);
+  opacity:0.28;
+}
+.panel::after{
+  content:"";
+  position:absolute; top:0; bottom:0; left:0; width:64px;
+  background-image: radial-gradient(circle, var(--paper) 3.5px, transparent 3.6px);
+  background-size: 100% 34px;
+  background-position: 18px 6px;
+  opacity:0.9;
+  pointer-events:none;
+}
+
+@media (max-width:520px){
+  .panel{ padding:30px 22px 30px 46px; }
+  .panel::before{ left:28px; }
+  .panel::after{ width:44px; background-position:14px 6px; }
 }
 
 /* ---- intro ---- */
-.badge-row{ display:flex; gap:8px; margin-bottom:22px; }
+.badge-row{ display:flex; gap:8px; margin-bottom:24px; }
 .dot{ width:8px; height:8px; border-radius:50%; }
 .dot.d1{ background: var(--plum); }
 .dot.d2{ background: var(--sage); }
 .dot.d3{ background: var(--amber); }
 .dot.d4{ background: var(--rose); }
-.dot.d5{ background: #3E7DA6; }
+.dot.d5{ background: var(--blue); }
 
 #intro h1{
   font-family:'Fraunces', serif;
   font-weight:600;
-  font-size:29px;
-  line-height:1.28;
-  margin:0 0 14px;
+  font-size:30px;
+  line-height:1.26;
+  margin:0 0 16px;
   color: var(--ink);
+  letter-spacing:-0.01em;
 }
-#intro p{ font-size:15px; line-height:1.7; color: var(--ink-dim); margin:0 0 22px; max-width:50ch;}
+#intro p{ font-size:15px; line-height:1.7; color: var(--ink-dim); margin:0 0 24px; max-width:50ch;}
 
-.skill-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-bottom:28px; }
+.skill-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-bottom:30px; }
 .skill-chip{
-  border:1px solid var(--line);
-  border-radius:12px;
+  border:1.5px dashed var(--line);
+  border-radius:11px;
   padding:12px 13px;
   display:flex;
   align-items:center;
@@ -87,138 +133,197 @@ body{
   font-size:12.5px;
   font-weight:500;
   background: var(--panel-soft);
+  transition: transform .15s ease, border-color .15s ease;
 }
+.skill-chip:hover{ transform: translateY(-2px) rotate(-0.4deg); border-color: currentColor; }
 .skill-chip svg{ flex-shrink:0; }
 
 .btn{
-  font-family:'Inter', sans-serif;
+  font-family:'Space Grotesk', sans-serif;
   background: var(--plum);
   color:#fff;
   border:none;
-  padding:13px 24px;
+  padding:14px 26px;
   font-size:14.5px;
   font-weight:600;
   border-radius:10px;
   cursor:pointer;
+  box-shadow: 0 3px 0 #3f3363;
+  transition: transform .12s ease, box-shadow .12s ease;
 }
-.btn:hover{ background:#4a3d73; }
+.btn:hover{ transform: translateY(-1px); }
+.btn:active{ transform: translateY(2px); box-shadow: 0 1px 0 #3f3363; }
 .btn.ghost{
   background:transparent;
   border:1.5px solid var(--line);
   color: var(--ink);
+  box-shadow:none;
 }
-.btn.ghost:hover{ border-color:var(--plum); color:var(--plum); }
+.btn.ghost:hover{ border-color:var(--plum); color:var(--plum); transform:none; }
+
+.note-scribble{
+  font-family:'Caveat', cursive;
+  font-size:15px;
+  color: var(--sage);
+  margin-left:14px;
+  display:inline-block;
+  transform: rotate(-3deg);
+}
 
 /* ---- quiz ---- */
-.progress-row{ display:flex; align-items:center; gap:12px; margin-bottom:26px; }
-.progress-track{ flex:1; height:6px; background: var(--panel-soft); border-radius:3px; overflow:hidden; border:1px solid var(--line); }
-.progress-fill{ height:100%; background: var(--plum); width:0%; transition: width .4s ease; border-radius:3px; }
-.progress-label{ font-family:'Space Grotesk', sans-serif; font-size:12.5px; font-weight:600; color: var(--ink-dim); white-space:nowrap;}
+.progress-row{ display:flex; align-items:center; gap:12px; margin-bottom:28px; }
+.progress-track{ flex:1; height:8px; background: var(--panel-soft); border-radius:6px; overflow:hidden; border:1px solid var(--line); position:relative; }
+.progress-fill{
+  height:100%;
+  background: repeating-linear-gradient(45deg, var(--plum), var(--plum) 8px, #6d5a9e 8px, #6d5a9e 16px);
+  width:0%;
+  transition: width .45s cubic-bezier(.3,.8,.3,1);
+  border-radius:6px;
+}
+.progress-label{ font-family:'Space Mono', monospace; font-size:12.5px; font-weight:700; color: var(--ink-dim); white-space:nowrap;}
 
 .skill-eyebrow{
   display:inline-flex;
   align-items:center;
   gap:7px;
-  font-size:12px;
+  font-size:11.5px;
   font-weight:600;
   letter-spacing:0.03em;
   text-transform:uppercase;
-  padding:5px 12px 5px 9px;
+  padding:6px 14px 6px 10px;
   border-radius:99px;
-  margin-bottom:16px;
+  margin-bottom:18px;
+  transform: rotate(-1.2deg);
 }
 #quiz h2{
   font-family:'Fraunces', serif;
   font-weight:600;
   font-size:20px;
-  line-height:1.48;
-  margin:0 0 22px;
+  line-height:1.5;
+  margin:0 0 24px;
   color: var(--ink);
 }
+#quizContent{ transition: opacity .22s ease, transform .22s ease; }
+#quizContent.fade-out{ opacity:0; transform: translateY(6px); }
+
 .opt{
   display:block;
   width:100%;
   text-align:left;
   background: var(--panel-soft);
   border:1.5px solid var(--line);
+  border-left:4px solid var(--line);
   color: var(--ink);
   padding:14px 17px;
-  border-radius:12px;
+  border-radius:8px;
   font-size:14.5px;
   font-family:'Inter', sans-serif;
   margin-bottom:10px;
   cursor:pointer;
   line-height:1.5;
-  transition: border-color .15s ease, background .15s ease, transform .1s ease;
+  transition: border-color .15s ease, background .15s ease, transform .1s ease, padding-left .15s ease;
 }
-.opt:hover{ border-color: var(--plum); background:var(--plum-soft); }
+.opt:hover{ border-color: var(--plum); border-left-color: var(--plum); background:var(--plum-soft); padding-left:21px; }
 .opt:active{ transform: scale(0.99); }
 
 /* ---- results ---- */
 #results h2{
   font-family:'Fraunces', serif;
-  font-size:25px;
+  font-size:26px;
   font-weight:600;
   margin:0 0 4px;
 }
-#results .sub{ color: var(--ink-dim); font-size:14px; margin:0 0 26px; }
+#results .sub{ color: var(--ink-dim); font-size:14px; margin:0 0 8px; }
 
-.overall{
-  display:flex;
-  align-items:center;
-  gap:22px;
-  margin-bottom:30px;
+.stamp-row{
+  display:flex; align-items:center; gap:24px;
+  margin: 18px 0 8px;
+  flex-wrap:wrap;
 }
-.ring{
-  width:96px; height:96px;
-  border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
+.stamp{
+  width:132px; height:132px; border-radius:50%;
+  border:3px solid var(--stamp-color, var(--plum));
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color: var(--stamp-color, var(--plum));
+  font-family:'Space Grotesk', sans-serif;
+  text-transform:uppercase;
+  transform: rotate(-9deg) scale(0.4);
+  opacity:0;
+  mix-blend-mode:multiply;
   flex-shrink:0;
   position:relative;
+  transition: transform .5s cubic-bezier(.2,.7,.25,1.3), opacity .3s ease;
 }
-.ring .hole{
-  width:74px; height:74px;
-  border-radius:50%;
-  background: var(--panel);
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Space Grotesk', sans-serif;
-  font-size:19px;
-  font-weight:700;
-  color: var(--ink);
+.stamp.show{ transform: rotate(-9deg) scale(1); opacity:0.92; }
+.stamp::after{
+  content:"";
+  position:absolute; inset:7px; border-radius:50%;
+  border:1.5px dashed var(--stamp-color, var(--plum));
+  opacity:0.7;
 }
-.overall .txt{ font-size:13.5px; color: var(--ink-dim); line-height:1.6;}
-.overall .txt b{ color: var(--ink); }
+.stamp .num{ font-family:'Space Mono', monospace; font-size:26px; font-weight:700; letter-spacing:-0.02em; }
+.stamp .word{ font-size:10.5px; font-weight:700; letter-spacing:0.04em; margin-top:2px; text-align:center; max-width:90px; line-height:1.25; }
 
-.skillrow{ margin-bottom:18px; }
-.skillrow .head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:7px; }
+.overall-txt{ font-size:13.5px; color: var(--ink-dim); line-height:1.65; flex:1; min-width:180px;}
+.overall-txt b{ color: var(--ink); }
+
+.radar-wrap{ display:flex; justify-content:center; margin: 8px 0 6px; }
+.radar-svg{ width:100%; max-width:320px; height:auto; overflow:visible; }
+.radar-poly{ transform: scale(0); transform-origin: 150px 145px; transition: transform .8s cubic-bezier(.2,.8,.25,1.15); }
+.radar-poly.grow{ transform: scale(1); }
+.radar-dot{ opacity:0; transition: opacity .3s ease .5s; }
+.radar-dot.show{ opacity:1; }
+
+.detail-toggle{
+  display:flex; align-items:center; gap:6px;
+  background:none; border:none; cursor:pointer;
+  font-family:'Space Grotesk'; font-size:12.5px; font-weight:600;
+  color: var(--plum); padding:6px 2px; margin:6px 0 18px;
+}
+.detail-toggle svg{ transition: transform .2s ease; }
+.detail-toggle.open svg{ transform: rotate(90deg); }
+
+.skillrow{ margin-bottom:17px; }
+.skillrow .head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:7px; gap:10px; }
 .skillrow .name{ display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:500; }
 .skillrow .name .desc{ font-family:'Inter'; font-weight:400; font-size:11.5px; color: var(--ink-dim); }
-.skillrow .pct{ font-family:'Space Grotesk', sans-serif; font-size:13px; font-weight:600; }
-.bar-track{ height:10px; background: var(--panel-soft); border-radius:6px; overflow:hidden; border:1px solid var(--line); }
-.bar-fill{ height:100%; border-radius:6px; transition: width .5s ease; }
+.skillrow .pct{ font-family:'Space Mono', monospace; font-size:13px; font-weight:700; flex-shrink:0; }
+.bar-track{ height:9px; background: var(--panel-soft); border-radius:5px; overflow:hidden; border:1px solid var(--line); }
+.bar-fill{ height:100%; border-radius:5px; width:0%; transition: width .6s cubic-bezier(.3,.8,.3,1); }
 
-.reco{ margin-top:30px; border-top:1px solid var(--line); padding-top:24px; }
+.reco{ margin-top:26px; border-top:1.5px dashed var(--line); padding-top:26px; }
 .reco h3{
   font-family:'Space Grotesk', sans-serif;
-  font-size:12px;
-  font-weight:600;
+  font-size:11.5px;
+  font-weight:700;
   text-transform:uppercase;
-  letter-spacing:0.05em;
+  letter-spacing:0.06em;
   color: var(--ink-dim);
   margin:0 0 16px;
 }
 .reco-card{
-  border-radius:14px;
+  border-radius:4px 12px 12px 12px;
   padding:16px 18px;
-  margin-bottom:12px;
+  margin-bottom:14px;
   font-size:13.5px;
   line-height:1.6;
+  position:relative;
+  box-shadow: 2px 3px 0 rgba(43,38,32,0.05);
 }
-.reco-card .rc-head{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:14px; margin-bottom:5px; display:flex; align-items:center; gap:8px;}
+.reco-card:nth-child(2){ transform: rotate(-0.5deg); }
+.reco-card:nth-child(3){ transform: rotate(0.4deg); }
+.reco-card:nth-child(4){ transform: rotate(-0.3deg); }
+.reco-card .rc-head{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:13.5px; margin-bottom:6px; display:flex; align-items:center; gap:8px;}
+.reco-card.strong .rc-head svg{ animation: sparkle 1.8s ease-in-out infinite; }
+@keyframes sparkle{ 0%,100%{ opacity:1; } 50%{ opacity:0.5; } }
 
-.actions{ display:flex; gap:10px; margin-top:28px; }
+.actions{ display:flex; gap:10px; margin-top:24px; }
 
 .hidden{ display:none; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
 </style>
 </head>
 <body>
@@ -236,14 +341,14 @@ body{
     <p>10 situações do dia a dia de quem está começando — sem nenhum termo técnico. Nenhuma resposta exige saber programar: o que importa é como você reage a erro, a trabalho em grupo e a prazo. No final, você vê seu perfil de soft skills e o que vale reforçar para continuar.</p>
 
     <div class="skill-grid">
-      <div class="skill-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4B8A" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Comunicação</div>
-      <div class="skill-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4E7C5B" stroke-width="2"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><path d="M2 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 13a4 4 0 0 1 4 4v2"/></svg>Trabalho em equipe</div>
-      <div class="skill-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C97A2B" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Organização</div>
-      <div class="skill-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B84B4B" stroke-width="2"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>Resiliência a erros</div>
-      <div class="skill-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3E7DA6" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Curiosidade</div>
+      <div class="skill-chip" style="color:#5B4B8A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B4B8A" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Comunicação</div>
+      <div class="skill-chip" style="color:#4E7C5B"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4E7C5B" stroke-width="2"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><path d="M2 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 13a4 4 0 0 1 4 4v2"/></svg>Trabalho em equipe</div>
+      <div class="skill-chip" style="color:#C97A2B"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C97A2B" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Organização</div>
+      <div class="skill-chip" style="color:#B5433F"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B5433F" stroke-width="2"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>Resiliência a erros</div>
+      <div class="skill-chip" style="color:#3E7DA6"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3E7DA6" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Curiosidade</div>
     </div>
 
-    <button class="btn" onclick="startQuiz()">Começar diagnóstico →</button>
+    <button class="btn" onclick="startQuiz()">Começar diagnóstico →</button><span class="note-scribble">leva ~3 min</span>
   </div>
 
   <div class="panel hidden" id="quiz">
@@ -251,21 +356,32 @@ body{
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
       <div class="progress-label" id="progressLabel">1 / 10</div>
     </div>
-    <div class="skill-eyebrow" id="skillEyebrow"></div>
-    <h2 id="questionText"></h2>
-    <div id="options"></div>
+    <div id="quizContent">
+      <div class="skill-eyebrow" id="skillEyebrow"></div>
+      <h2 id="questionText"></h2>
+      <div id="options"></div>
+    </div>
   </div>
 
   <div class="panel hidden" id="results">
     <h2>Seu perfil de soft skills</h2>
     <p class="sub">A partir das suas 10 respostas</p>
 
-    <div class="overall">
-      <div class="ring" id="ring"><div class="hole" id="overallNum">0%</div></div>
-      <div class="txt" id="overallTxt"></div>
+    <div class="stamp-row">
+      <div class="stamp" id="stamp">
+        <div class="num" id="overallNum">0%</div>
+        <div class="word" id="overallWord"></div>
+      </div>
+      <div class="overall-txt" id="overallTxt"></div>
     </div>
 
-    <div id="skillBars"></div>
+    <div class="radar-wrap" id="radarWrap"></div>
+
+    <button class="detail-toggle" id="detailToggle" onclick="toggleDetail()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>
+      Ver detalhamento por habilidade
+    </button>
+    <div id="skillBars" class="hidden"></div>
 
     <div class="reco" id="recoSection"></div>
 
@@ -284,11 +400,12 @@ const skills = {
     icon:'<circle cx="9" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><path d="M2 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M15 13a4 4 0 0 1 4 4v2"/>' },
   organizacao: { label:"Organização e tempo", short:"lidar com prazos e atividades concorrentes", color:"#C97A2B", soft:"var(--amber-soft)",
     icon:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>' },
-  resiliencia: { label:"Resiliência a erros", short:"continuar depois de errar ou ser corrigido", color:"#B84B4B", soft:"var(--rose-soft)",
+  resiliencia: { label:"Resiliência a erros", short:"continuar depois de errar ou ser corrigido", color:"#B5433F", soft:"var(--rose-soft)",
     icon:'<path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/>' },
-  curiosidade: { label:"Curiosidade", short:"ir além do que foi pedido, por interesse próprio", color:"#3E7DA6", soft:"#E4EEF4",
+  curiosidade: { label:"Curiosidade", short:"ir além do que foi pedido, por interesse próprio", color:"#3E7DA6", soft:"var(--blue-soft)",
     icon:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>' }
 };
+const SKILL_ORDER = ["comunicacao","equipe","organizacao","resiliencia","curiosidade"];
 
 const questions = [
   { skill:"comunicacao",
@@ -361,7 +478,7 @@ const questions = [
       {t:"Fica esperando o sinal tocar", v:0},
       {t:"Tenta resolver o exercício de um jeito diferente, só por curiosidade", v:3},
       {t:"Ajuda um colega que ainda está travado", v:2},
-      {t:"Mexe no celular até a próxima atividade", v:0}
+      {t:"Mexer no computador até a próxima atividade", v:0}
     ]},
   { skill:"curiosidade",
     text:"Você percebe que algo de outra matéria (matemática, física) parece ter a ver com o que está aprendendo agora. Você:",
@@ -383,26 +500,35 @@ function startQuiz(){
 }
 
 function renderQuestion(){
-  const q = questions[current];
-  const sk = skills[q.skill];
-  document.getElementById('progressLabel').textContent = `${current+1} / 10`;
-  document.getElementById('progressFill').style.width = ((current)/10*100)+'%';
+  const content = document.getElementById('quizContent');
+  const doRender = () => {
+    const q = questions[current];
+    const sk = skills[q.skill];
+    document.getElementById('progressLabel').textContent = `${current+1} / 10`;
+    document.getElementById('progressFill').style.width = ((current)/10*100)+'%';
 
-  const eyebrow = document.getElementById('skillEyebrow');
-  eyebrow.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="${sk.color}" stroke-width="2">${sk.icon}</svg> ${sk.label}`;
-  eyebrow.style.background = sk.soft;
-  eyebrow.style.color = sk.color;
+    const eyebrow = document.getElementById('skillEyebrow');
+    eyebrow.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="${sk.color}" stroke-width="2">${sk.icon}</svg> ${sk.label}`;
+    eyebrow.style.background = sk.soft;
+    eyebrow.style.color = sk.color;
 
-  document.getElementById('questionText').textContent = q.text;
-  const opts = document.getElementById('options');
-  opts.innerHTML = '';
-  q.options.forEach(o=>{
-    const b = document.createElement('button');
-    b.className = 'opt';
-    b.textContent = o.t;
-    b.onclick = ()=> answer(q.skill, o.v);
-    opts.appendChild(b);
-  });
+    document.getElementById('questionText').textContent = q.text;
+    const opts = document.getElementById('options');
+    opts.innerHTML = '';
+    q.options.forEach(o=>{
+      const b = document.createElement('button');
+      b.className = 'opt';
+      b.style.borderLeftColor = 'var(--line)';
+      b.textContent = o.t;
+      b.onclick = ()=> answer(q.skill, o.v);
+      opts.appendChild(b);
+    });
+    content.classList.remove('fade-out');
+  };
+
+  if(current === 0){ doRender(); return; }
+  content.classList.add('fade-out');
+  setTimeout(doRender, 180);
 }
 
 function answer(skill, v){
@@ -412,14 +538,15 @@ function answer(skill, v){
     renderQuestion();
   } else {
     document.getElementById('progressFill').style.width = '100%';
-    showResults();
+    document.getElementById('progressLabel').textContent = `10 / 10`;
+    setTimeout(showResults, 200);
   }
 }
 
 function statusWord(pct){
-  if(pct >= 70) return {word:'consolidada', color:'#4E7C5B'};
-  if(pct >= 40) return {word:'em desenvolvimento', color:'#C97A2B'};
-  return {word:'precisa de atenção', color:'#B84B4B'};
+  if(pct >= 70) return {word:'consolidada', color:'var(--sage)'};
+  if(pct >= 40) return {word:'em desenvolvimento', color:'var(--amber)'};
+  return {word:'precisa de atenção', color:'var(--rose)'};
 }
 
 const recos = {
@@ -438,24 +565,131 @@ const strongMsgs = {
   curiosidade: "Você vai além do que foi pedido só por interesse próprio — é exatamente esse impulso que sustenta o aprendizado depois que as aulas acabam."
 };
 
+function polar(cx, cy, r, angleDeg){
+  const a = angleDeg * Math.PI / 180;
+  return [ +(cx + r*Math.cos(a)).toFixed(1), +(cy + r*Math.sin(a)).toFixed(1) ];
+}
+
+function buildRadar(pcts){
+  const cx=150, cy=142, maxR=98;
+  const angleFor = i => -90 + i*72;
+
+  let gridPolys = '';
+  [20,40,60,80,100].forEach(level=>{
+    const r = maxR*level/100;
+    const pts = SKILL_ORDER.map((_,i)=> polar(cx,cy,r,angleFor(i)).join(',')).join(' ');
+    gridPolys += `<polygon points="${pts}" fill="none" stroke="#E4DBC6" stroke-width="1"/>`;
+  });
+
+  let axes = '';
+  SKILL_ORDER.forEach((_,i)=>{
+    const [x,y] = polar(cx,cy,maxR,angleFor(i));
+    axes += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#E4DBC6" stroke-width="1"/>`;
+  });
+
+  const dataPts = SKILL_ORDER.map((k,i)=> polar(cx,cy, maxR*Math.max(pcts[k],3)/100, angleFor(i)));
+  const dataPolyStr = dataPts.map(p=>p.join(',')).join(' ');
+
+  let dots = '';
+  SKILL_ORDER.forEach((k,i)=>{
+    const [x,y] = dataPts[i];
+    dots += `<circle class="radar-dot" cx="${x}" cy="${y}" r="5" fill="${skills[k].color}" stroke="#FFFEFA" stroke-width="2"/>`;
+  });
+
+  let labels = '';
+  SKILL_ORDER.forEach((k,i)=>{
+    const [x,y] = polar(cx,cy,maxR+30,angleFor(i));
+    let anchor='middle';
+    if(x < cx-14) anchor='end'; else if(x > cx+14) anchor='start';
+    labels += `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600" fill="${skills[k].color}">${skills[k].label}</text>`;
+  });
+
+  return `<svg class="radar-svg" viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+    ${gridPolys}${axes}
+    <polygon id="radarPoly" class="radar-poly" points="${dataPolyStr}" fill="var(--plum)" fill-opacity="0.16" stroke="var(--plum)" stroke-width="2.5"/>
+    ${dots}
+  </svg><div style="text-align:center;margin-top:2px">${labelsWrap(labels,cx,cy)}</div>`;
+}
+
+// labels are embedded directly in SVG text via separate overlay svg to keep them upright and simple
+function labelsWrap(){ return ''; }
+
+function buildRadarFull(pcts){
+  const cx=150, cy=142, maxR=98;
+  const angleFor = i => -90 + i*72;
+
+  let gridPolys = '';
+  [20,40,60,80,100].forEach(level=>{
+    const r = maxR*level/100;
+    const pts = SKILL_ORDER.map((_,i)=> polar(cx,cy,r,angleFor(i)).join(',')).join(' ');
+    gridPolys += `<polygon points="${pts}" fill="none" stroke="#E4DBC6" stroke-width="1"/>`;
+  });
+
+  let axes = '';
+  SKILL_ORDER.forEach((_,i)=>{
+    const [x,y] = polar(cx,cy,maxR,angleFor(i));
+    axes += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#E4DBC6" stroke-width="1"/>`;
+  });
+
+  const dataPts = SKILL_ORDER.map((k,i)=> polar(cx,cy, maxR*Math.max(pcts[k],3)/100, angleFor(i)));
+  const dataPolyStr = dataPts.map(p=>p.join(',')).join(' ');
+
+  let dots = '';
+  SKILL_ORDER.forEach((k,i)=>{
+    const [x,y] = dataPts[i];
+    dots += `<circle class="radar-dot" cx="${x}" cy="${y}" r="5.5" fill="${skills[k].color}" stroke="#FFFEFA" stroke-width="2"/>`;
+  });
+
+  let labels = '';
+  SKILL_ORDER.forEach((k,i)=>{
+    const [x,y] = polar(cx,cy,maxR+34,angleFor(i));
+    let anchor='middle';
+    if(x < cx-14) anchor='end'; else if(x > cx+14) anchor='start';
+    labels += `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600" fill="${skills[k].color}">${skills[k].label}</text>`;
+  });
+
+  return `<svg class="radar-svg" viewBox="-20 -10 340 300" xmlns="http://www.w3.org/2000/svg">
+    ${gridPolys}${axes}
+    <polygon id="radarPoly" class="radar-poly" points="${dataPolyStr}" fill="var(--plum)" fill-opacity="0.16" stroke="var(--plum)" stroke-width="2.5"/>
+    ${dots}${labels}
+  </svg>`;
+}
+
+function toggleDetail(){
+  const bars = document.getElementById('skillBars');
+  const btn = document.getElementById('detailToggle');
+  bars.classList.toggle('hidden');
+  btn.classList.toggle('open');
+  btn.lastChild.textContent = bars.classList.contains('hidden') ? ' Ver detalhamento por habilidade' : ' Ocultar detalhamento';
+}
+
 function showResults(){
   document.getElementById('quiz').classList.add('hidden');
   document.getElementById('results').classList.remove('hidden');
 
   const pcts = {};
-  Object.keys(scores).forEach(k=> pcts[k] = Math.round(scores[k]/6*100));
+  SKILL_ORDER.forEach(k=> pcts[k] = Math.round(scores[k]/6*100));
   const overall = Math.round(Object.values(pcts).reduce((a,b)=>a+b,0)/5);
 
-  document.getElementById('overallNum').textContent = overall + '%';
   const ov = statusWord(overall);
-  const ring = document.getElementById('ring');
-  ring.style.background = `conic-gradient(${ov.color} ${overall*3.6}deg, #E3DCC9 0deg)`;
-  document.getElementById('overallTxt').innerHTML = `Nível geral <b style="color:${ov.color}">${ov.word}</b> para quem está começando em programação. Veja abaixo onde reforçar antes de seguir para os primeiros projetos.`;
+  const stamp = document.getElementById('stamp');
+  stamp.style.setProperty('--stamp-color', ov.color);
+  document.getElementById('overallNum').textContent = overall + '%';
+  document.getElementById('overallWord').textContent = ov.word;
+  document.getElementById('overallTxt').innerHTML = `Nível geral <b style="color:${ov.color}">${ov.word}</b> para quem está começando em programação. O mapa abaixo mostra a forma do seu perfil — quanto mais estufado para um lado, mais forte essa habilidade.`;
+
+  requestAnimationFrame(()=> stamp.classList.add('show'));
+
+  document.getElementById('radarWrap').innerHTML = buildRadarFull(pcts);
+  setTimeout(()=>{
+    document.getElementById('radarPoly').classList.add('grow');
+    document.querySelectorAll('.radar-dot').forEach(d=> d.classList.add('show'));
+  }, 120);
 
   const barsEl = document.getElementById('skillBars');
   barsEl.innerHTML = '';
   const sorted = Object.keys(pcts).sort((a,b)=> pcts[b]-pcts[a]);
-  sorted.forEach(k=>{
+  sorted.forEach((k,idx)=>{
     const sk = skills[k];
     const st = statusWord(pcts[k]);
     const row = document.createElement('div');
@@ -465,9 +699,10 @@ function showResults(){
         <span class="name"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${sk.color}" stroke-width="2">${sk.icon}</svg> ${sk.label} <span class="desc">— ${sk.short}</span></span>
         <span class="pct" style="color:${st.color}">${pcts[k]}%</span>
       </div>
-      <div class="bar-track"><div class="bar-fill" style="width:${pcts[k]}%; background:${sk.color}"></div></div>
+      <div class="bar-track"><div class="bar-fill" style="background:${sk.color}"></div></div>
     `;
     barsEl.appendChild(row);
+    setTimeout(()=>{ row.querySelector('.bar-fill').style.width = pcts[k]+'%'; }, 60*idx);
   });
 
   const weakest = sorted[sorted.length-1];
@@ -485,8 +720,8 @@ function showResults(){
       <div class="rc-head" style="color:${skills[secondWeakest].color}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="${skills[secondWeakest].color}" stroke-width="2">${skills[secondWeakest].icon}</svg>${skills[secondWeakest].label} · ${pcts[secondWeakest]}%</div>
       ${recos[secondWeakest]}
     </div>
-    <div class="reco-card" style="background:${skills[strongest].soft}; border:1.5px solid ${skills[strongest].color}33">
-      <div class="rc-head" style="color:${skills[strongest].color}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="${skills[strongest].color}" stroke-width="2">${skills[strongest].icon}</svg>Ponto forte: ${skills[strongest].label} · ${pcts[strongest]}%</div>
+    <div class="reco-card strong" style="background:${skills[strongest].soft}; border:1.5px solid ${skills[strongest].color}44">
+      <div class="rc-head" style="color:${skills[strongest].color}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="${skills[strongest].color}" stroke-width="2"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>Ponto forte: ${skills[strongest].label} · ${pcts[strongest]}%</div>
       ${strongMsgs[strongest]}
     </div>
   `;
@@ -495,6 +730,9 @@ function showResults(){
 function restart(){
   current = 0;
   Object.keys(scores).forEach(k=> scores[k]=0);
+  document.getElementById('stamp').classList.remove('show');
+  document.getElementById('skillBars').classList.add('hidden');
+  document.getElementById('detailToggle').classList.remove('open');
   document.getElementById('results').classList.add('hidden');
   document.getElementById('intro').classList.remove('hidden');
 }
